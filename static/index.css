@@ -32,13 +32,3 @@ body {
     clear: both;
     display: table;
   }
-
-  table thead {
-    display:table;
-    width: 100%;
-    background-color: lightblue;
-    position: fixed;
-  }
-  table{
-    table-layout:fixed;
-  }
