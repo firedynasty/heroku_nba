@@ -6,7 +6,6 @@ from flask import (
     jsonify,
     request,
     redirect)
-import pandas as pd
 
 #################################################
 # Flask Setup
@@ -20,7 +19,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #################################################
 
 from flask_sqlalchemy import SQLAlchemy
-import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -94,9 +92,6 @@ def additon():
     select_stmt2 = select([Pets])
     data1 = connection.execute(select_stmt2).fetchall()
     return render_template("index.html", data=data1)
-
-
-
 
 
 if __name__ == "__main__":
