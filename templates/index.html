@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Upcoming NBA Games</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="/static/index.css">
+ <style>
+ 
+    td {
+           width: 150px;
+           text-align: center;
+           border: 1px solid black;
+           padding: 5px;
+         }
+   </style>
+</head>
+<body>
+
+    <div class="container">
+<div class="jumbotron text-center">
+<h1>Upcoming NBA Games and Predictions</h1>
+<!-- <p><a class="btn btn-primary btn-lg" href="/addition" role="button">Update!</a></p> -->
+</div>
+    
+
+<table>
+  <thead>
+    <tr>
+        <th>DATE</th>
+        <th>HOME_ABBR</th>
+        <th>VISITOR_ABBR</th>
+        <th>MARGIN</th>
+        <th>PTS_home</th>
+        <th>PTS_away</th>
+        <th>FG_PCT_home</th>
+        <th>FG_PCT_away</th>
+        <th>PREDICTED</th>
+        <th>PREDICTED_INT</th>
+        <th>HOME_WINNING_PCT</th>
+    </tr>
+    </thead>    
+    <tbody>
+     {% for row in data %}    
+            <tr>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
+                <td>{{row[7]}}</td>
+                <td>{{row[8]}}</td>
+                <td>{{row[9]}}</td>
+                <td>{{row[10]}}</td>
+                <td>{{row[11]}}</td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<br><br><p align="center"><a href=search ><button class="btn btn-primary">Search History by Team Abbreviations</button></a></p>
+
+
+        <table>
+            <thead>
+              <tr>
+                  <th>DATE</th>
+                  <th>HOME_ABBR</th>
+                  <th>VISITOR_ABBR</th>
+                  <th>PTS_home</th>
+                  <th>PTS_away</th>
+                  <th>MARGIN</th>
+                  <th>HOME_TEAM_WINS</th>
+                  <th>FG_PCT_home</th>
+                  <th>FG_PCT_away</th>
+              </tr>
+              </thead>    
+              <tbody>
+               {% for row in data2 %}    
+                      <tr>
+                          <td>{{row[1]}}</td>
+                          <td>{{row[2]}}</td>
+                          <td>{{row[5]}}</td>
+                          <td>{{row[6]}}</td>
+                          <td>{{row[7]}}</td>
+                          <td>{{row[3]}}</td>
+                          <td>{{row[4]}}</td>
+                          <td>{{row[8]}}</td>
+                          <td>{{row[13]}}</td>
+
+                          
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        
+        </div>
+
+</body>
+</html>
