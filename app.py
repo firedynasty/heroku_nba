@@ -25,25 +25,26 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import insert, select, and_, or_, not_, desc
+import os
 
 # N.B. external config.py file should be formatted like:
 # login = 'postgres:password' where password is set to whatever your database password is. Default username is 
 # postgres, but change this if you use a different username.
 import psycopg2
-postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
-                .format(username='postgres',
-                        password='postgres',
-                        ipaddress='localhost',
-                        port=5432,
-                        dbname='flask_deploy'))
+# postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
+#                 .format(username='postgres',
+#                         password='postgres',
+#                         ipaddress='localhost',
+#                         port=5432,
+#                         dbname='flask_deploy'))
 
 # postgres_str = app.config['SQL_ALCHEMY_DATABASE_URI'] = 'postgres://umydthrhevlwbv:a166611fc4fda747769900bb51cfb8cbd633cebe3ec13fdfc2180772a9d3bc8d@ec2-18-204-101-137.compute-1.amazonaws.com:5432/d9ugm948kmolua'
 
 
 app.debug = True
-app.config['SQLALCHEMY_DATABASE_URI'] = postgres_str
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
     # Create the connection
-engine = create_engine(postgres_str)
+engine = create_engine(DATABASE_URL)
 connection = engine.connect()
 from sqlalchemy.orm import sessionmaker
 Session = sessionmaker(bind=engine)
