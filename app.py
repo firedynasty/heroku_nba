@@ -36,8 +36,8 @@ import os
 #                         port=5432,
 #                         dbname='flask_deploy'))
 
-postgres_str = 'postgres://umydthrhevlwbv:a166611fc4fda747769900bb51cfb8cbd633cebe3ec13fdfc2180772a9d3bc8d@ec2-18-204-101-137.compute-1.amazonaws.com:5432/d9ugm948kmolua'
 
+postgres_str = os.environ.get('DATABASE_URL', '')
 
 app.debug = True
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
