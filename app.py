@@ -29,15 +29,21 @@ import os
 # login = 'postgres:password' where password is set to whatever your database password is. Default username is 
 # postgres, but change this if you use a different username.
 # import psycopg2
-# postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
-#                 .format(username='postgres',
-#                         password='postgres',
-#                         ipaddress='localhost',
-#                         port=5432,
-#                         dbname='flask_deploy'))
 
 
-postgres_str = os.environ.get('DATABASE_URL', '')
+#################################################
+# Deploy to Heroku
+#################################################
+
+# postgres_str = os.environ.get('DATABASE_URL', '')
+
+#################################################
+# Otherwise not
+#################################################
+
+postgres_str = 'postgres://umydthrhevlwbv:a166611fc4fda747769900bb51cfb8cbd633cebe3ec13fdfc2180772a9d3bc8d@ec2-18-204-101-137.compute-1.amazonaws.com:5432/d9ugm948kmolua'
+
+
 
 app.debug = True
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
@@ -57,7 +63,7 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 Predicted_values = Base.classes.predicted_values
 Box_scores = Base.classes.box_score_2021
-
+Historic = Base.classes.historic
 
 from sqlalchemy import select, insert
 select_stmt = select([Predicted_values])
@@ -65,11 +71,21 @@ select_stmt = select([Predicted_values])
 data = connection.execute(select_stmt).fetchall()
 
 
+
+
 # create route that renders index.html template
 @app.route("/")
 def home():
 
     return render_template("index.html", data=data)
+
+@app.route("/previous")
+def previous():
+    select_stmt_2nd = select([Historic])
+    data3 = connection.execute(select_stmt_2nd).fetchall()
+
+    return render_template("previous.html", data3=data3)
+
 
 
 @app.route('/search', methods=['POST', 'GET'])
