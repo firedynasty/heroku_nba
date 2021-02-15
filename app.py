@@ -35,13 +35,11 @@ import os
 # Deploy to Heroku
 #################################################
 
-# postgres_str = os.environ.get('DATABASE_URL', '')
+postgres_str = os.environ.get('DATABASE_URL', '')
 
 #################################################
 # Otherwise not
 #################################################
-
-postgres_str = 'postgres://umydthrhevlwbv:a166611fc4fda747769900bb51cfb8cbd633cebe3ec13fdfc2180772a9d3bc8d@ec2-18-204-101-137.compute-1.amazonaws.com:5432/d9ugm948kmolua'
 
 
 
